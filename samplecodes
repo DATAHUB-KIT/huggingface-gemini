@@ -1,9 +1,9 @@
 from transformers import pipeline
 question_answerer = pipeline("question-answering")
 question_answerer(
-    question = "Ai is a?",
-    context = "Artificial Intelligence (AI) is the branch of computer science focused on creating systems that can perform tasks that typically require human intelligence. These tasks include learning, reasoning, problem-solving, understanding language, recognizing patterns, and making decisions."
-)
+    question = "  ",
+    context = """
+"""
 
 =================================================
 
