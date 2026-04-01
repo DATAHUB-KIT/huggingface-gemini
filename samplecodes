@@ -6,3 +6,14 @@ question_answerer(
 )
 
 =================================================
+
+
+summarizer = pipeline("summarization")
+text = """
+"""
+
+outputs = summarizer(text, max_length=60,
+     clean_up_tokenization_spaces = True)
+print(outputs[0]["summary_text"])
+
+=======================================================
