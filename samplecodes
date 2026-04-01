@@ -16,3 +16,15 @@ outputs = summarizer(text, max_length=60,
 print(outputs[0]["summary_text"])
 
 =======================================================
+from transformers import pipeline
+
+generator = pipeline("text-generation", model="gpt2")
+
+prompt = """
+Question: If there are 5 books on the table and I buy 3 more,
+now total books are 5 or 8 ?
+Let's think step-by-step:
+"""
+
+result = generator(prompt, max_length=100, temperature=0.7, num_return_sequences=1)
+print(result[0]['generated_text'])
