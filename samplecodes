@@ -1,48 +1,14 @@
-from transformers import pipeline
-question_answerer = pipeline("question-answering")
-question_answerer(
-    question = "  ",
-    context = """
-"""
-=================================================
-
-
-summarizer = pipeline("summarization")
-text = """
-"""
-
-outputs = summarizer(text, max_length=60,
-     clean_up_tokenization_spaces = True)
-print(outputs[0]["summary_text"])
-
-=======================================================
-from transformers import pipeline
-
-generator = pipeline("text-generation", model="gpt2")
-
-prompt = """
-Question: If there are 5 books on the table and I buy 3 more,
-now total books are 5 or 8 ?
-Let's think step-by-step:
-"""
-
-result = generator(prompt, max_length=100, temperature=0.7, num_return_sequences=1)
-print(result[0]['generated_text'])
-===================================================================================
-
-%pip install -U -q "google-generativeai>=0.7.2"
-
 import google.generativeai as genai
 from IPython.display import Markdown
 from google.colab import userdata
 GOOGLE_API_KEY=userdata.get('apikey1')
 genai.configure(api_key=GOOGLE_API_KEY)
-==============================================================================
-for m in genai.list_models():
-  if 'generateContent' in m.supported_generation_methods:
-    print(m.name)
+model = genai.GenerativeModel("gemini-2.5-flash")
+prompt = "Sort animals from biggest to smallest: fish, elephant, dog"
+response = model.generate_content(prompt)
+display(Markdown(response.text))
 
-========================================================
+=================================================================
 
 
 
