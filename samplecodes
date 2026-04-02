@@ -202,3 +202,24 @@ if st.button("Analyze Sentiment"):
             st.info("Neutral ")
     else:
         st.warning("Please enter some text")
+===============================================================================================
+
+import streamlit as st
+from transformers import pipeline
+
+# Load model (runs once)
+@st.cache_resource
+def load_model():
+    return pipeline("sentiment-analysis")
+
+sentiment_pipeline = load_model()
+
+# UI
+st.title("Hugging Face Sentiment Analysis ")
+
+text = st.text_area("Enter your text:")
+
+if st.button("Analyze"):
+    if text:
+        result = sentiment_pipeline(text)[0]
+
