@@ -258,5 +258,41 @@ if st.button("Send"):
             response = result.text
 
         st.write("Bot:", response)
+==========================================================
+RESUME SCREEING AND RECOMMEND JOBS
+===========================================================
+!pip install pdfplumber
+import pdfplumber
+
+resume_text = ""
+with pdfplumber.open("/content/Profile.pdf") as pdf:
+    for page in pdf.pages:
+        resume_text += page.extract_text() + "\n"
+
+print(" Extracted Resume Text:\n")
+print(resume_text[:1000])  # Show first 1000 characters
+
+from transformers import pipeline
+generator = pipeline("text2text-generation", model="google/flan-t5-base")
+
+
+prompt = f"""
+You are an expert career advisor. Based on the following resume text, suggest 3 ideal job titles and industries that match this person's background.
+
+Resume:
+{resume_text}
+
+Respond in bullet points.
+"""
+
+response = generator(prompt, max_new_tokens=20)[0]["generated_text"]
+
+print(" AI Job Recommendations:\n")
+print(response)
+
+
+
+
+
 
 
