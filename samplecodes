@@ -45,6 +45,52 @@ model = genai.GenerativeModel(model_name='gemini-2.5-flash')
 Markdown(model.generate_content(prompt).text)
 
 
+==================================================
+
+sample data:
+
+name,attendance
+STD1,89
+STD2,76
+STD3,56
+STD4,45
+STD5,99
+STD6,77
+
+save as STDDATA.csv
+
+and upload google colab
+
+import pandas as pd
+
+df = pd.read_csv("/content/STDDATA.csv")
+
+df.head()
+
+
+context = ""
+context += '\n'.join([f"{row['name']},{row['attendance']}" for _, row in df.iterrows()])
+print(context)
+
+
+import google.generativeai as genai
+from IPython.display import Markdown
+
+genai.configure(api_key="apikey1")
+
+# Correct model
+
+prompt = f"""
+QUERY: Identify the student with the lowest attendance.
+
+CONTEXT:
+
+{context}
+"""
+model = genai.GenerativeModel(model_name='gemini-2.5-flash')
+Markdown(model.generate_content(prompt).text)
+
+
 
 
 
