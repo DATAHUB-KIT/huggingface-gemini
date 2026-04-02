@@ -114,6 +114,44 @@ images=pipe(prompt=prompt,
 images
 
 =======================================
+!pip install transformers pillow pytesseract
+!apt-get install tesseract-ocr -y
+
+from google.colab import files
+uploaded = files.upload()
+
+
+from PIL import Image
+import pytesseract
+from transformers import pipeline
+
+# Load image
+image_path = list(uploaded.keys())[0]
+image = Image.open(image_path)
+
+
+text = pytesseract.image_to_string(image)
+
+print("Extracted Text:\n", text)
+
+# -----------------------
+# Sentiment Analysis
+# -----------------------
+sentiment = pipeline("sentiment-analysis")
+
+if text.strip() != "":
+    result = sentiment(text)[0]
+    
+    label = result['label']
+    score = result['score']
+
+    print("\nSentiment Result:")
+    print(f"{label} ({score:.2f})")
+else:
+    print("No text found in image")
+
+
+
 
 
 
