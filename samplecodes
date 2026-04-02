@@ -232,7 +232,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # Configure API key
-genai.configure(api_key="AIzaSyCqs4xaBy2nGMLDzidGgBvFjpCQczaTl0k")
+genai.configure(api_key="  ")
 
 # Load model
 model = genai.GenerativeModel("gemini-2.5-flash")
