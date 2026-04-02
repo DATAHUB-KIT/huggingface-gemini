@@ -223,3 +223,40 @@ if st.button("Analyze"):
     if text:
         result = sentiment_pipeline(text)[0]
 
+============================================================================================
+
+install in vs code
+pip install -U -q "google-generativeai>=0.7.2"
+
+import streamlit as st
+import google.generativeai as genai
+
+# Configure API key
+genai.configure(api_key="AIzaSyCqs4xaBy2nGMLDzidGgBvFjpCQczaTl0k")
+
+# Load model
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+st.title("Gemini Admission Bot ")
+
+# Input
+user_input = st.text_input("Ask your question:")
+
+if st.button("Send"):
+    if user_input:
+
+        # Simple rules
+        if "fee" in user_input.lower():
+            response = "The fee is approximately ₹50,000 per year."
+        elif "course" in user_input.lower():
+            response = "Courses available: B.Tech, MBA, MCA."
+        elif "hostel" in user_input.lower():
+            response = "Yes, hostel facility is available."
+        else:
+            # Gemini fallback
+            result = model.generate_content(user_input)
+            response = result.text
+
+        st.write("Bot:", response)
+
+
