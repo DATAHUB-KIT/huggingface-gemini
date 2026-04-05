@@ -94,3 +94,16 @@ print(response.text)
 
 =========================================
 
+prompt = """
+Solve step by step:
+
+If a shop sells 3 apples for ₹30, what is the price of 5 apples?
+
+Let's think step by step.
+"""
+
+response = model.generate_content(prompt)
+print(response.text)
+
+==================================
+
