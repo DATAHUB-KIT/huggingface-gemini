@@ -106,4 +106,12 @@ response = model.generate_content(prompt)
 print(response.text)
 
 ==================================
+model = genai.GenerativeModel("gemini-2.5-flash")
 
+prompt = "Sort animals from biggest to smallest: fish, elephant, dog"
+
+response = model.generate_content(prompt)
+
+display(Markdown(response.text))
+
+===========================
