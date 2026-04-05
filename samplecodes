@@ -1,3 +1,7 @@
+text = "Hello World! This is NLP."
+text = text.lower()
+print(text)
+-----------------------------------
 
 
 
