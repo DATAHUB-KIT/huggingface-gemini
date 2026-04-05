@@ -115,3 +115,19 @@ response = model.generate_content(prompt)
 display(Markdown(response.text))
 
 ===========================
+prompt = """
+QUERY: Identify the student with the lowest attendance.
+
+CONTEXT:
+
+Table title: Student Attendance Summary (Number of Days Present)
+Alice, 172
+Bob, 165
+Charlie, 159
+Daisy, 148
+Edward, 176
+"""
+
+model = genai.GenerativeModel(model_name='gemini-2.5-flash')
+Markdown(model.generate_content(prompt).text)
+===================================================
