@@ -227,10 +227,56 @@ response = generator(prompt, max_new_tokens=20)[0]["generated_text"]
 print(" AI Job Recommendations:\n")
 print(response)
 
+====================================================================
 
 
+# Remove old conflicting versions
+!pip uninstall -y langchain langchain-community langchain-core langchain-google-genai
 
+# Install stable compatible versions
+!pip install -q langchain==0.2.14 langchain-community==0.2.12 langchain-google-genai faiss-cpu
 
+from langchain.chains import RetrievalQA
+from langchain_community.vectorstores import FAISS
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('apikey2')
+import os
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+
+# Sample data
+
+texts = [
+    "Chest pain or discomfort may indicate heart problems",
+    "Pain spreading to left arm, jaw, or back is a warning sign",
+    "Shortness of breath can be related to heart disease",
+    "Palpitations indicate irregular heartbeat",
+    "Swelling in legs or ankles may indicate heart failure",
+    "Fatigue and dizziness can be symptoms of heart issues",
+    "Cold sweats and nausea may signal a heart attack",
+    "Fainting or lightheadedness may indicate cardiac problems",
+    "Rapid or irregular heartbeat is a symptom of arrhythmia",
+    "Sudden breathlessness at night may indicate heart failure"
+]
+# Embeddings
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001"
+)
+
+# Vector DB
+db = FAISS.from_texts(texts, embeddings)
+
+# LLM
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+
+# RAG chain
+qa = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=db.as_retriever()
+)
+
+print(qa.run("I have chest pain for 20 minutes"))
 
 
 
