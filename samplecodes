@@ -55,5 +55,7 @@ os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 =============================================
 
+%pip install -U -q "google-generativeai>=0.7.2"
+
 
 
