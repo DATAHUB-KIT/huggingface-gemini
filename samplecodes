@@ -170,7 +170,7 @@ else:
 =================================================
 
 !pip install diffusers
-!pip install torch
+#!pip install torch
 
 from diffusers import DiffusionPipeline
 import torch
