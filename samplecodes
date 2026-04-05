@@ -76,5 +76,21 @@ Sentence: "I love this product"
 response = model.generate_content(prompt)
 print(response.text)
 -----------------------------------------------
+#one shot
+prompt = """
+Classify sentiment:
 
+Example:
+Sentence: "I hate this movie"
+Sentiment: Negative
+
+Now classify:
+Sentence: "I love this product"
+Sentiment:
+"""
+
+response = model.generate_content(prompt)
+print(response.text)
+
+=========================================
 
