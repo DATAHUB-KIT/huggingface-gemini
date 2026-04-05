@@ -30,6 +30,12 @@ text = "I love Python! �"
 text = emoji.demojize(text)
 text = emoji.replace_emoji(text, replace="") 
 print(text)
+===========================================
+
+from transformers import pipeline
+classifier=pipeline('sentiment-analysis')
+classifier('i HATE movies')
+
 
 
 
