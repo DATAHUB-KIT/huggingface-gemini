@@ -12,6 +12,10 @@ print(tokens)
 
 ------------------------------
 
+import string 
+text = "Hello, World! This is NLP." 
+text = text.translate(str.maketrans('', '', string.punctuation)) 
+print(text) 
 
 
 
