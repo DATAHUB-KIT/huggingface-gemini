@@ -47,5 +47,13 @@ classifier = pipeline("sentiment-analysis",
                       model=model, tokenizer=tokenizer)
 classifier("good restaurant")
 
+======================================================
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('apikey3')
+import os
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+
+=============================================
+
 
 
