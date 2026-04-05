@@ -22,6 +22,14 @@ stemmer = PorterStemmer()
 words = ["running", "runner", "ran"] 
 stemmed_words = [stemmer.stem(word) for word in words] 
 print(stemmed_words) 
+==================================================
+!pip install emoji 
+import emoji 
+text = "I love Python! �" 
+# Convert emojis to text 
+text = emoji.demojize(text)
+text = emoji.replace_emoji(text, replace="") 
+print(text)
 
 
 
