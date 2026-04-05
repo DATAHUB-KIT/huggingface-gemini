@@ -16,6 +16,12 @@ import string
 text = "Hello, World! This is NLP." 
 text = text.translate(str.maketrans('', '', string.punctuation)) 
 print(text) 
+---------------------------------------
+from nltk.stem import PorterStemmer 
+stemmer = PorterStemmer() 
+words = ["running", "runner", "ran"] 
+stemmed_words = [stemmer.stem(word) for word in words] 
+print(stemmed_words) 
 
 
 
